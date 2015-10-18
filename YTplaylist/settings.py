@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'addVideo',
     'searchVideo',
+    'playList',
 )
 
 MIDDLEWARE_CLASSES = (
