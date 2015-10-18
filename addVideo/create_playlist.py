@@ -22,7 +22,9 @@ from oauth2client.tools import argparser, run_flow
 # For more information about the client_secrets.json file format, see:
 #   https://developers.google.com/api-client-library/python/guide/aaa_client_secrets
 def createPlaylist(name):
-  CLIENT_SECRETS_FILE = "/home/wwong30/Documents/appathon/YTplaylist/YTplaylist/addVideo/client_secrets.json"
+  CLIENT_SECRETS_FILE = "client_secrets.json"
+  CLIENT_SECRETS_FILE = os.path.join(os.path.dirname(__file__),
+                                   CLIENT_SECRETS_FILE)
 
   # This variable defines a message to display if the CLIENT_SECRETS_FILE is
   # missing.

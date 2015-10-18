@@ -10,5 +10,5 @@ def index(request):
 	context = RequestContext(request, {
 		'nameList': ["wesley","kenny","kristy"],
 		})
-	##createPlaylist("hello there")
+	#createPlaylist("k")
 	return HttpResponse(template.render(context))

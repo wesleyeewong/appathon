@@ -8,4 +8,5 @@ urlpatterns = [
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^addVideo/', include('addVideo.urls')),
+    url(r'^searchVideo/', include('searchVideo.urls')),
 ]
