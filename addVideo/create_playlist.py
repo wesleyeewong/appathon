@@ -21,60 +21,62 @@ from oauth2client.tools import argparser, run_flow
 #   https://developers.google.com/youtube/v3/guides/authentication
 # For more information about the client_secrets.json file format, see:
 #   https://developers.google.com/api-client-library/python/guide/aaa_client_secrets
-CLIENT_SECRETS_FILE = "/home/wwong30/Documents/appathon/YTplaylist/YTplaylist/addVideo/client_secrets.json"
+def createPlaylist(name):
+  CLIENT_SECRETS_FILE = "/home/wwong30/Documents/appathon/YTplaylist/YTplaylist/addVideo/client_secrets.json"
 
-# This variable defines a message to display if the CLIENT_SECRETS_FILE is
-# missing.
-MISSING_CLIENT_SECRETS_MESSAGE = """
-WARNING: Please configure OAuth 2.0
+  # This variable defines a message to display if the CLIENT_SECRETS_FILE is
+  # missing.
+  MISSING_CLIENT_SECRETS_MESSAGE = """
+  WARNING: Please configure OAuth 2.0
 
-To make this sample run you will need to populate the client_secrets.json file
-found at:
+  To make this sample run you will need to populate the client_secrets.json file
+  found at:
 
-   %s
+     %s
 
-with information from the Developers Console
-https://console.developers.google.com/
+  with information from the Developers Console
+  https://console.developers.google.com/
 
-For more information about the client_secrets.json file format, please visit:
-https://developers.google.com/api-client-library/python/guide/aaa_client_secrets
-""" % os.path.abspath(os.path.join(os.path.dirname(__file__),
-                                   CLIENT_SECRETS_FILE))
+  For more information about the client_secrets.json file format, please visit:
+  https://developers.google.com/api-client-library/python/guide/aaa_client_secrets
+  """ % os.path.abspath(os.path.join(os.path.dirname(__file__),
+                                     CLIENT_SECRETS_FILE))
 
-# This OAuth 2.0 access scope allows for full read/write access to the
-# authenticated user's account.
-YOUTUBE_READ_WRITE_SCOPE = "https://www.googleapis.com/auth/youtube"
-YOUTUBE_API_SERVICE_NAME = "youtube"
-YOUTUBE_API_VERSION = "v3"
+  # This OAuth 2.0 access scope allows for full read/write access to the
+  # authenticated user's account.
+  YOUTUBE_READ_WRITE_SCOPE = "https://www.googleapis.com/auth/youtube"
+  YOUTUBE_API_SERVICE_NAME = "youtube"
+  YOUTUBE_API_VERSION = "v3"
 
-flow = flow_from_clientsecrets(CLIENT_SECRETS_FILE,
-  message=MISSING_CLIENT_SECRETS_MESSAGE,
-  scope=YOUTUBE_READ_WRITE_SCOPE,)
+  flow = flow_from_clientsecrets(CLIENT_SECRETS_FILE,
+    message=MISSING_CLIENT_SECRETS_MESSAGE,
+    scope=YOUTUBE_READ_WRITE_SCOPE,
+    redirect_uri="http://youtube.com",)
 
 
-storage = Storage("%s-oauth2.json" % sys.argv[0])
-credentials = storage.get()
+  storage = Storage("%s-oauth2.json" % sys.argv[0])
+  credentials = storage.get()
 
-if credentials is None or credentials.invalid:
-  ##flags = argparser.parse_args()
-  flags = argparser.parse_args(args=[])
-  credentials = run_flow(flow, storage, flags)
+  if credentials is None or credentials.invalid:
+    ##flags = argparser.parse_args()
+    flags = argparser.parse_args(args=[])
+    credentials = run_flow(flow, storage, flags)
 
-youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION,
-  http=credentials.authorize(httplib2.Http()))
+  youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION,
+    http=credentials.authorize(httplib2.Http()))
 
-# This code creates a new, private playlist in the authorized user's channel.
-playlists_insert_response = youtube.playlists().insert(
-  part="snippet,status",
-  body=dict(
-    snippet=dict(
-      title="Test Playlist",
-      description="A private playlist created with the YouTube API v3"
-    ),
-    status=dict(
-      privacyStatus="private"
+  # This code creates a new, private playlist in the authorized user's channel.
+  playlists_insert_response = youtube.playlists().insert(
+    part="snippet,status",
+    body=dict(
+      snippet=dict(
+        title=name,
+        description="A private playlist created with the YouTube API v3"
+      ),
+      status=dict(
+        privacyStatus="private"
+      )
     )
-  )
-).execute()
+  ).execute()
 
-print "New playlist id: %s" % playlists_insert_response["id"]
+  print "New playlist id: %s" % playlists_insert_response["id"]
