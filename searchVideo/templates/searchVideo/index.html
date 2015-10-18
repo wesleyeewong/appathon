@@ -1,0 +1,36 @@
+<head>
+
+	 <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.5/material.blue-amber.min.css" /> 
+	 <script src="https://storage.googleapis.com/code.getmdl.io/1.0.5/material.min.js"></script>
+	 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+</head>
+
+
+<body background="wallpaper.png">
+
+
+
+	<div id="middle" style="width:50%; left:25%; top:15%; position:relative;">
+
+		<form action="/blah" method="post">
+		  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:100%">
+		    <input class="mdl-textfield__input" type="text" id="sample3" />
+		    <label class="mdl-textfield__label" for="sample3">Search Video</label>
+		  </div>
+		</form>
+
+		
+		{% for x in nameList %}
+
+		<div class="mdl-card mdl-shadow--4dp" style="width:100%; margin-top:8px;">
+
+			<p>hello {{ x }} </p>
+
+		</div>
+
+		{% endfor %}
+
+	</div>
+
+</body>
