@@ -13,10 +13,11 @@
 
 	<div id="middle" style="width:50%; left:25%; top:15%; position:relative;">
 
-		<form action="/blah" method="post">
+		<form action="/addVideo/" method="post">
+			{% csrf_token %}
 		  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:100%">
-		    <input class="mdl-textfield__input" type="text" id="sample3" />
-		    <label class="mdl-textfield__label" for="sample3">Search Video</label>
+		    <input class="mdl-textfield__input" type="text" id="search" name="search"/>
+		    <label class="mdl-textfield__label" for="search">Search Video</label>
 		  </div>
 		</form>
 

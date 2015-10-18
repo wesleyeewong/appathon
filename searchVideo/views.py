@@ -6,9 +6,7 @@ from django.template import RequestContext, loader
 from show_playlist_songs import show_playlist_songs
 
 def index(request):
+	id = request.GET.get('id')
 	template = loader.get_template('searchVideo/index.html')
-	context = RequestContext(request, {
-		'nameList': ["kenny","kenny","kenny"],
-		})
-	context = show_playlist_songs("PLwDI47x9eHsG9Bqj1L0JZaKLyKcssviDj")
+	context = show_playlist_songs(id.encode())
 	return HttpResponse(template.render({'context':context}))
