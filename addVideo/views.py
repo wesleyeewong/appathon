@@ -7,6 +7,6 @@ from django.template import RequestContext, loader
 def index(request):
 	template = loader.get_template('addVideo/index.html')
 	context = RequestContext(request, {
-		'argument': 'hello world',
+		'nameList': ["wesley","kenny","kristy"],
 		})
 	return HttpResponse(template.render(context))
