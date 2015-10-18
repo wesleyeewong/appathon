@@ -22,7 +22,7 @@ from oauth2client.tools import argparser, run_flow
 # For more information about the client_secrets.json file format, see:
 #   https://developers.google.com/api-client-library/python/guide/aaa_client_secrets
 def add_song(playlistId, videoId):
-  CLIENT_SECRETS_FILE = "client_secrets.json"
+  CLIENT_SECRETS_FILE = "../client_secrets.json"
   CLIENT_SECRETS_FILE = os.path.join(os.path.dirname(__file__),
                                    CLIENT_SECRETS_FILE)
 
@@ -71,10 +71,10 @@ def add_song(playlistId, videoId):
     part="snippet",
     body={
       "snippet": {
-        "playlistId":playlistID,
-        "resourceId": {"kind":"youtubevideo", "videoId":videoId}
+        "playlistId":playlistId,
+        "resourceId": {"kind":"youtube#video", "videoId":videoId}
       }
     }
-  )
+  ).execute()
 
-  print "New playlist id: %s" % playlists_insert_response["id"]
+  return "okkkkkkkkkkkkkkkkkkkkkk"
