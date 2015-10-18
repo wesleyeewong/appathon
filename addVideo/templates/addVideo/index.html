@@ -11,14 +11,13 @@
 
 	<div id="middle" style="width:50%; left:25%; top:15%; position:relative;">
 
-		
 		{% for x in context %}
 
-		<div class="mdl-card mdl-shadow--4dp" style="width:100%; margin-top:8px;">
+		<a href="/searchVideo/add/?playlistID={{id}}&videoID={{x.1}}"><div class="mdl-card mdl-shadow--4dp" style="width:100%; margin-top:8px;">
 
 			<p>{{ x.0 }} </p>
 
-		</div>
+		</div></a>
 
 		{% endfor %}
 
