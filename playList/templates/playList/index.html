@@ -1,0 +1,29 @@
+<head>
+
+	 <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.5/material.blue-amber.min.css" /> 
+	 <script src="https://storage.googleapis.com/code.getmdl.io/1.0.5/material.min.js"></script>
+	 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+</head>
+
+
+<body style="background-color:grey">
+
+
+
+	<div id="middle" style="width:50%; left:25%; top:15%; position:relative;">
+
+
+		{% for x in context %}
+
+		<a href="{{x.1}}"><div class="mdl-card mdl-shadow--4dp" style="width:100%; margin-top:8px;">
+
+			<h2>title: {{ x.0 }} </h2>
+
+		</div></a>
+
+		{% endfor %}
+
+	</div>
+
+</body>
